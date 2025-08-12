@@ -17,18 +17,19 @@
             margin: 0;
             padding: 20px;
         }
-        .page-container {
-            /* This will be the main container for the content to be downloaded */
-        }
-        .page {
+        /* The main container for all content */
+        #contentToPrint {
             background-color: white;
             padding: 2.5cm 2cm;
             margin: 20px auto;
             max-width: 21cm;
-            min-height: 29.7cm;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             box-sizing: border-box;
             font-size: 12pt;
+        }
+        .page-break-visual {
+            border-top: 2px dashed #ccc;
+            margin: 40px 0;
         }
         .header {
             text-align: center;
@@ -45,10 +46,18 @@
         h4 {
             font-size: 13pt;
         }
-        .question-title {
+        .question-text {
             font-weight: bold;
-            margin-top: 25px;
+            background-color: #eef7ee;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        .answer-title {
+            font-weight: bold;
             margin-bottom: 10px;
+            color: #2c5ea8;
         }
         .sub-heading {
             font-weight: bold;
@@ -84,9 +93,6 @@
             max-width: 100%;
             height: auto;
         }
-        .page-break {
-            /* This class is now just for visual separation on the web page */
-        }
         .diagram-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -121,24 +127,10 @@
             cursor: not-allowed;
         }
         @media print {
-            body {
-                background-color: white;
-                padding: 0;
-                margin: 0;
-            }
-            .page {
-                box-shadow: none;
-                margin: 0;
-                max-width: 100%;
-                min-height: 0;
-                page-break-after: always;
-            }
-            .page:last-child {
-                page-break-after: auto;
-            }
-            .download-buttons {
-                display: none;
-            }
+            body { background-color: white; padding: 0; margin: 0; }
+            .download-buttons { display: none; }
+            #contentToPrint { box-shadow: none; margin: 0; max-width: 100%; }
+            .page-break-visual { page-break-after: always; }
         }
     </style>
 </head>
@@ -149,424 +141,281 @@
         <button onclick="downloadDoc()">Download as Word Doc</button>
     </div>
 
-    <div id="pageContainer" class="page-container">
-        <div class="page">
-            <div class="header">
-                <h3>MAHARASHTRA STATE BOARD OF TECHNICAL EDUCATION (MSBTE)</h3>
-                <h4>Model Answer Sheet</h4>
-                <p style="margin: 5px 0 0 0;"><strong>Subject:</strong> Digital Electronics</p>
-            </div>
+    <div id="contentToPrint">
+        <div class="header">
+            <h3>MAHARASHTRA STATE BOARD OF TECHNICAL EDUCATION (MSBTE)</h3>
+            <h4>Model Answer Sheet</h4>
+            <p style="margin: 5px 0 0 0;"><strong>Subject:</strong> Digital Electronics</p>
+        </div>
 
-            <div class="question-title">Answer to Q.1:</div>
-            <div class="sub-heading">Logic Gate</div>
-            <p>A <strong>logic gate</strong> is a fundamental building block of a digital circuit. It's an electronic device that performs a logical operation on one or more binary inputs to produce a single binary output. The output is determined by the specific logical function the gate implements (like AND, OR, NOT).</p>
-            <div class="sub-heading">Classification of Logic Gates</div>
-            <p>Logic gates are broadly classified into three main categories:</p>
+        <div class="question-text">Q.1: Define logic gate. Classify the logic gates. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.1:</div>
+        <p><strong>Logic Gate (1 Mark):</strong> A logic gate is a basic building block of a digital circuit that performs a logical operation on one or more binary inputs to produce a single binary output.</p>
+        <p><strong>Classification (1 Mark):</strong> Logic gates are classified into three types:
             <ol>
-                <li><strong>Basic Gates:</strong>
-                    <ul>
-                        <li><strong>AND Gate:</strong> The output is '1' only if all inputs are '1'.</li>
-                        <li><strong>OR Gate:</strong> The output is '1' if at least one input is '1'.</li>
-                        <li><strong>NOT Gate (Inverter):</strong> The output is the complement of the single input.</li>
-                    </ul>
-                </li>
-                <li><strong>Universal Gates:</strong>
-                    <ul>
-                        <li><strong>NAND Gate:</strong> (NOT-AND) The output is '0' only if all inputs are '1'.</li>
-                        <li><strong>NOR Gate:</strong> (NOT-OR) The output is '0' if at least one input is '1'.</li>
-                    </ul>
-                </li>
-                <li><strong>Special Purpose Gates (Arithmetic Gates):</strong>
-                    <ul>
-                        <li><strong>XOR (Exclusive-OR) Gate:</strong> The output is '1' if the inputs are different.</li>
-                        <li><strong>XNOR (Exclusive-NOR) Gate:</strong> The output is '1' if the inputs are the same.</li>
-                    </ul>
-                </li>
+                <li><strong>Basic Gates:</strong> AND, OR, NOT</li>
+                <li><strong>Universal Gates:</strong> NAND, NOR</li>
+                <li><strong>Special Purpose Gates:</strong> XOR, XNOR</li>
             </ol>
+        </p>
 
-            <div class="question-title">Answer to Q.2:</div>
-            <p>The base or radix of a number system is the total number of unique digits used to represent numbers in that system.</p>
-            <ul>
-                <li><strong>Binary:</strong> Base <strong>2</strong> (Digits: 0, 1)</li>
-                <li><strong>Decimal:</strong> Base <strong>10</strong> (Digits: 0-9)</li>
-                <li><strong>Octal:</strong> Base <strong>8</strong> (Digits: 0-7)</li>
-                <li><strong>Hexadecimal:</strong> Base <strong>16</strong> (Symbols: 0-9, A-F)</li>
-            </ul>
+        <div class="question-text">Q.2: State the base of the following number systems: binary, decimal, octal, hexadecimal. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.2:</div>
+        <ul>
+            <li><strong>Binary:</strong> Base-2</li>
+            <li><strong>Decimal:</strong> Base-10</li>
+            <li><strong>Octal:</strong> Base-8</li>
+            <li><strong>Hexadecimal:</strong> Base-16</li>
+        </ul>
+
+        <div class="question-text">Q.3: Draw the symbol and truth table of a 3-input OR gate. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.3:</div>
+        <div class="diagram-container">
+            <strong>Symbol (1 Mark):</strong>
+            <svg width="150" height="100" viewBox="0 0 150 100">
+                <path d="M 30 20 C 60 30, 60 70, 30 80 L 70 80 Q 100 50, 70 20 Z" stroke="black" stroke-width="2" fill="none"/>
+                <line x1="0" y1="30" x2="30" y2="30" stroke="black" stroke-width="2"/><line x1="0" y1="50" x2="30" y2="50" stroke="black" stroke-width="2"/><line x1="0" y1="70" x2="30" y2="70" stroke="black" stroke-width="2"/><line x1="95" y1="50" x2="130" y2="50" stroke="black" stroke-width="2"/><text x="10" y="28" font-size="12">A</text><text x="10" y="48" font-size="12">B</text><text x="10" y="68" font-size="12">C</text><text x="135" y="53" font-size="12">Y</text>
+            </svg>
         </div>
+        <strong>Truth Table (1 Mark):</strong>
+        <table>
+            <thead><tr><th colspan="3">Inputs</th><th>Output</th></tr><tr><th>A</th><th>B</th><th>C</th><th>Y</th></tr></thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
 
-        <div class="page page-break">
-            <div class="question-title">Answer to Q.3:</div>
-            <div class="sub-heading">Symbol and Truth Table for a 3-Input OR Gate</div>
-            <p><strong>Boolean Expression:</strong> Y = A + B + C</p>
-            <div class="diagram-container">
-                <svg width="150" height="100" viewBox="0 0 150 100">
-                    <path d="M 30 20 C 60 30, 60 70, 30 80 L 70 80 Q 100 50, 70 20 Z" stroke="black" stroke-width="2" fill="none"/>
-                    <line x1="0" y1="30" x2="30" y2="30" stroke="black" stroke-width="2"/>
-                    <line x1="0" y1="50" x2="30" y2="50" stroke="black" stroke-width="2"/>
-                    <line x1="0" y1="70" x2="30" y2="70" stroke="black" stroke-width="2"/>
-                    <line x1="95" y1="50" x2="130" y2="50" stroke="black" stroke-width="2"/>
-                    <text x="10" y="28" font-size="12">A</text>
-                    <text x="10" y="48" font-size="12">B</text>
-                    <text x="10" y="68" font-size="12">C</text>
-                    <text x="135" y="53" font-size="12">Y</text>
-                </svg>
-            </div>
-            <table>
-                <thead><tr><th colspan="3">Inputs</th><th>Output</th></tr>
-                <tr><th>A</th><th>B</th><th>C</th><th>Y</th></tr></thead>
-                <tbody>
-                    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
-                    <tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
-                    <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
-                    <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-                    <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
-                    <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
-                    <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
-                </tbody>
-            </table>
+        <div class="page-break-visual"></div>
 
-            <div class="question-title">Answer to Q.4:</div>
-            <p>To find the 2's complement of the binary number <strong>1010</strong>:</p>
-            <p><strong>Step 1: Find the 1's Complement</strong><br>
-            Invert all the bits (0 → 1, 1 → 0).<br>
-            Original Number: 1010<br>
-            1's Complement: 0101</p>
-            <p><strong>Step 2: Add 1 to the 1's Complement</strong></p>
-            <pre>  0101  (1's Complement)
-    +    1
-    ------
-      0110</pre>
-            <p>The <strong>2's complement of 1010 is 0110</strong>.</p>
+        <div class="question-text">Q.4: Obtain the 2's complement of 1010. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.4:</div>
+        <p><strong>Step 1: Find 1's Complement (1 Mark):</strong> Invert all bits of 1010.
+        <br>1's Complement = 0101</p>
+        <p><strong>Step 2: Add 1 to 1's Complement (1 Mark):</strong>
+        <pre>  0101 + 1 = 0110</pre>
+        The <strong>2's complement of 1010 is 0110</strong>.</p>
+    
+        <div class="question-text">Q.5: Draw the symbol of a universal gate (any one). Write the reason why it is called a universal gate. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.5:</div>
+        <div class="diagram-container">
+            <strong>Symbol (NAND Gate) (1 Mark):</strong>
+             <svg width="150" height="100" viewBox="0 0 150 100">
+                <path d="M 30 20 H 70 V 80 H 30 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="80" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/><line x1="0" y1="35" x2="30" y2="35" stroke="black" stroke-width="2"/><line x1="0" y1="65" x2="30" y2="65" stroke="black" stroke-width="2"/><line x1="85" y1="50" x2="120" y2="50" stroke="black" stroke-width="2"/><text x="10" y="33" font-size="12">A</text><text x="10" y="63" font-size="12">B</text><text x="125" y="53" font-size="12">Y</text>
+            </svg>
+        </div>
+        <p><strong>Reason (1 Mark):</strong> It is called a universal gate because any other logic gate (like AND, OR, NOT) or any Boolean expression can be implemented using only this type of gate.</p>
+        
+        <div class="question-text">Q.6: What is BCD code? (2 Marks)</div>
+        <div class="answer-title">Answer to Q.6:</div>
+        <p>BCD (Binary Coded Decimal) is a method of representing decimal digits (0-9) in binary. In BCD, each decimal digit is represented by its equivalent 4-bit binary number. It is also known as the 8421 code.</p>
+        
+        <div class="question-text">Q.7: Convert (D8F)₁₆ into binary and octal. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.7:</div>
+        <p><strong>Binary (1 Mark):</strong> D=1101, 8=1000, F=1111 → <strong>(110110001111)₂</strong></p>
+        <p><strong>Octal (1 Mark):</strong> Group binary into sets of 3: 110 110 001 111 → <strong>(6617)₈</strong></p>
+
+        <div class="page-break-visual"></div>
+
+        <div class="question-text">Q.8: Draw the block diagram of a 4:1 Multiplexer. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.8:</div>
+        <div class="diagram-container">
+            <svg width="200" height="150" viewBox="0 0 200 150">
+                <rect x="50" y="20" width="100" height="110" stroke="black" stroke-width="2" fill="none"/><text x="75" y="70" font-size="14">4:1</text><text x="75" y="90" font-size="14">MUX</text><line x1="20" y1="35" x2="50" y2="35" stroke="black" stroke-width="2"/><text x="5" y="38" font-size="12">I₀</text><line x1="20" y1="60" x2="50" y2="60" stroke="black" stroke-width="2"/><text x="5" y="63" font-size="12">I₁</text><line x1="20" y1="85" x2="50" y2="85" stroke="black" stroke-width="2"/><text x="5" y="88" font-size="12">I₂</text><line x1="20" y1="110" x2="50" y2="110" stroke="black" stroke-width="2"/><text x="5" y="113" font-size="12">I₃</text><line x1="150" y1="75" x2="180" y2="75" stroke="black" stroke-width="2"/><text x="185" y="78" font-size="12">Y</text><line x1="90" y1="130" x2="90" y2="145" stroke="black" stroke-width="2"/><line x1="110" y1="130" x2="110" y2="145" stroke="black" stroke-width="2"/><text x="85" y="150" font-size="12">S₁</text><text x="105" y="150" font-size="12">S₀</text>
+            </svg>
         </div>
         
-        <div class="page page-break">
-            <div class="question-title">Answer to Q.5:</div>
-            <div class="sub-heading">Universal Gate: NAND Gate</div>
-            <div class="diagram-container">
-                 <svg width="150" height="100" viewBox="0 0 150 100">
-                    <path d="M 30 20 H 70 V 80 H 30 Z" stroke="black" stroke-width="2" fill="none"/>
-                    <circle cx="80" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/>
-                    <line x1="0" y1="35" x2="30" y2="35" stroke="black" stroke-width="2"/>
-                    <line x1="0" y1="65" x2="30" y2="65" stroke="black" stroke-width="2"/>
-                    <line x1="85" y1="50" x2="120" y2="50" stroke="black" stroke-width="2"/>
-                    <text x="10" y="33" font-size="12">A</text>
-                    <text x="10" y="63" font-size="12">B</text>
-                    <text x="125" y="53" font-size="12">Y</text>
-                </svg>
-            </div>
-            <div class="sub-heading">Reason for being a Universal Gate</div>
-            <p>A <strong>universal gate</strong> can be used to construct any other type of logic gate (AND, OR, NOT). The NAND gate is universal because combinations of it can implement the three basic logic functions. Since all Boolean expressions can be built from these basic functions, any gate that can replicate them is considered universal.</p>
-            
-            <div class="question-title">Answer to Q.6:</div>
-            <div class="sub-heading">BCD (Binary Coded Decimal) Code</div>
-            <p>BCD is a system of representing decimal numbers (0-9) in binary form. Each decimal digit is encoded with its own <strong>4-bit binary equivalent</strong>. It is also known as the <strong>8421 code</strong> because the weights of the four bits correspond to 8, 4, 2, and 1.</p>
-            <p><strong>Example:</strong> To represent (39)₁₀ in BCD:</p>
-            <ul>
-                <li>`3` is `0011`</li>
-                <li>`9` is `1001`</li>
-            </ul>
-            <p>So, (39)₁₀ in BCD is `0011 1001`.</p>
+        <div class="question-text">Q.9: Perform the binary addition and subtraction: (4 Marks)<br>i) (1011)₂ + (1100)₂<br>ii) (11011)₂ - (10110)₂</div>
+        <div class="answer-title">Answer to Q.9:</div>
+        <p><strong>i) Addition (2 Marks):</strong></p>
+        <pre>   1 1   (Carry)
+   1011
++  1100
+---------
+  10111</pre>
+        <p><strong>ii) Subtraction (2 Marks):</strong></p>
+        <pre>      0 10 (Borrow)
+   1 1 0 1 1
+-  1 0 1 1 0
+-------------
+   0 0 1 0 1</pre>
 
-            <div class="question-title">Answer to Q.7:</div>
-            <p><strong>Conversion of (D8F)₁₆:</strong></p>
-            <p><strong>1. To Binary:</strong> Replace each hex digit with its 4-bit binary equivalent.</p>
-            <p>D = 1101, 8 = 1000, F = 1111</p>
-            <p>Therefore, <strong>(D8F)₁₆ = (110110001111)₂</strong>.</p>
-            <p><strong>2. To Octal:</strong> Group the binary bits into sets of 3 from the right.</p>
-            <p>Binary: 110 110 001 111</p>
-            <p>Octal: &nbsp; 6 &nbsp; &nbsp; 6 &nbsp; &nbsp; 1 &nbsp; &nbsp; 7</p>
-            <p>Therefore, <strong>(D8F)₁₆ = (6617)₈</strong>.</p>
+        <div class="page-break-visual"></div>
+        
+        <div class="question-text">Q.10: State and prove De Morgan's theorem (any one). (4 Marks)</div>
+        <div class="answer-title">Answer to Q.10:</div>
+        <p><strong>Statement (1 Mark):</strong> De Morgan's first theorem states that the complement of a product of variables is equal to the sum of the complements of the individual variables.<br><strong>(A · B)' = A' + B'</strong></p>
+        <div class="sub-heading">Proof (3 Marks):</div>
+        <p>The theorem can be proven using a truth table that evaluates both sides of the equation for all possible input values.</p>
+        <table>
+            <thead><tr><th>A</th><th>B</th><th>A'</th><th>B'</th><th>A·B</th><th>(A·B)' (LHS)</th><th>A'+B' (RHS)</th></tr></thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td><strong>1</strong></td><td><strong>1</strong></td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td><strong>1</strong></td><td><strong>1</strong></td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td><strong>1</strong></td><td><strong>1</strong></td></tr><tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
+            </tbody>
+        </table>
+        <p>Since the columns for the Left Hand Side (LHS) and Right Hand Side (RHS) are identical, the theorem is proven.</p>
+        
+        <div class="page-break-visual"></div>
+
+        <div class="question-text">Q.11: Realize the basic logic gates (NOT, AND, OR) using NOR gate only. (And NAND gate only). (4 Marks)</div>
+        <div class="answer-title">Answer to Q.11:</div>
+        <p><strong>A. Using NOR Gates Only (2 Marks)</strong></p>
+        <div class="diagram-grid">
+            <div><strong>NOT Gate</strong><svg width="150" height="100" viewBox="0 0 150 100"><path d="M 50 20 C 80 30, 80 70, 50 80 L 90 80 Q 120 50, 90 20 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="115" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/><line x1="20" y1="50" x2="50" y2="50" stroke="black" stroke-width="2"/><line x1="120" y1="50" x2="140" y2="50" stroke="black" stroke-width="2"/><path d="M 50 50 C 40 40, 40 30, 50 20" stroke="black" stroke-width="2" fill="none"/><text x="5" y="53">A</text><text x="145" y="53">Y</text></svg></div>
+            <div><strong>OR Gate</strong><svg width="220" height="100" viewBox="0 0 220 100"><path d="M 30 20 C 60 30, 60 70, 30 80 L 70 80 Q 100 50, 70 20 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="95" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/><line x1="0" y1="35" x2="30" y2="35"/><line x1="0" y1="65" x2="30" y2="65"/><line x1="100" y1="50" x2="120" y2="50"/><path d="M 120 20 C 150 30, 150 70, 120 80 L 160 80 Q 190 50, 160 20 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="185" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/><line x1="190" y1="50" x2="210" y2="50"/><path d="M 120 50 C 110 40, 110 30, 120 20" stroke="black" stroke-width="2" fill="none"/><text x="5" y="33">A</text><text x="5" y="63">B</text><text x="215" y="53">Y</text></svg></div>
+            <div><strong>AND Gate</strong><svg width="250" height="120" viewBox="0 0 250 120"><path d="M 50 10 C 80 20, 80 40, 50 50 L 90 50 Q 120 30, 90 10 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="115" cy="30" r="5"/><line x1="20" y1="30" x2="50" y2="30"/><path d="M 50 30 C 40 20, 40 10, 50 10"/><line x1="120" y1="30" x2="140" y2="30"/><path d="M 50 60 C 80 70, 80 90, 50 100 L 90 100 Q 120 80, 90 60 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="115" cy="80" r="5"/><line x1="20" y1="80" x2="50" y2="80"/><path d="M 50 80 C 40 70, 40 60, 50 60"/><line x1="120" y1="80" x2="140" y2="80"/><path d="M 140 30 C 170 40, 170 70, 140 80 L 180 80 Q 210 55, 180 30 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="205" cy="55" r="5"/><line x1="210" y1="55" x2="230" y2="55"/><text x="5" y="33">A</text><text x="5" y="83">B</text><text x="235" y="58">Y</text></svg></div>
         </div>
-
-        <div class="page page-break">
-            <div class="question-title">Answer to Q.8:</div>
-            <div class="sub-heading">Block Diagram of a 4:1 Multiplexer (MUX)</div>
-            <div class="diagram-container">
-                <svg width="200" height="150" viewBox="0 0 200 150">
-                    <rect x="50" y="20" width="100" height="110" stroke="black" stroke-width="2" fill="none"/>
-                    <text x="75" y="70" font-size="14">4:1</text>
-                    <text x="75" y="90" font-size="14">MUX</text>
-                    <!-- Inputs -->
-                    <line x1="20" y1="35" x2="50" y2="35" stroke="black" stroke-width="2"/>
-                    <text x="5" y="38" font-size="12">I₀</text>
-                    <line x1="20" y1="60" x2="50" y2="60" stroke="black" stroke-width="2"/>
-                    <text x="5" y="63" font-size="12">I₁</text>
-                    <line x1="20" y1="85" x2="50" y2="85" stroke="black" stroke-width="2"/>
-                    <text x="5" y="88" font-size="12">I₂</text>
-                    <line x1="20" y1="110" x2="50" y2="110" stroke="black" stroke-width="2"/>
-                    <text x="5" y="113" font-size="12">I₃</text>
-                    <!-- Output -->
-                    <line x1="150" y1="75" x2="180" y2="75" stroke="black" stroke-width="2"/>
-                    <text x="185" y="78" font-size="12">Y</text>
-                    <!-- Select Lines -->
-                    <line x1="90" y1="130" x2="90" y2="145" stroke="black" stroke-width="2"/>
-                    <line x1="110" y1="130" x2="110" y2="145" stroke="black" stroke-width="2"/>
-                    <text x="85" y="150" font-size="12">S₁</text>
-                    <text x="105" y="150" font-size="12">S₀</text>
-                </svg>
-            </div>
-            
-            <div class="question-title">Answer to Q.9:</div>
-            <div class="sub-heading">Binary Arithmetic</div>
-            <p><strong>a. Addition: (1011)₂ + (1100)₂</strong></p>
-            <pre>   1 1   (Carry)
-       1011
-    +  1100
-    ---------
-      10111</pre>
-            <p>Result: <strong>(10111)₂</strong></p>
-            <p><strong>b. Subtraction: (11011)₂ - (10110)₂</strong></p>
-            <pre>      0 10 (Borrow)
-       1 1 0 1 1
-    -  1 0 1 1 0
-    -------------
-       0 0 1 0 1</pre>
-            <p>Result: <strong>(101)₂</strong></p>
+        <p><strong>B. Using NAND Gates Only (2 Marks)</strong></p>
+        <div class="diagram-grid">
+            <div><strong>NOT Gate</strong><svg width="150" height="100" viewBox="0 0 150 100"><path d="M 50 20 H 90 V 80 H 50 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="100" cy="50" r="5"/><line x1="20" y1="50" x2="50" y2="50"/><path d="M 50 50 C 40 40, 40 30, 50 20"/><line x1="105" y1="50" x2="130" y2="50"/><text x="5" y="53">A</text><text x="135" y="53">Y</text></svg></div>
+            <div><strong>AND Gate</strong><svg width="220" height="100" viewBox="0 0 220 100"><path d="M 30 20 H 70 V 80 H 30 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="80" cy="50" r="5"/><line x1="0" y1="35" x2="30" y2="35"/><line x1="0" y1="65" x2="30" y2="65"/><line x1="85" y1="50" x2="120" y2="50"/><path d="M 120 20 H 160 V 80 H 120 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="170" cy="50" r="5"/><line x1="175" y1="50" x2="200" y2="50"/><path d="M 120 50 C 110 40, 110 30, 120 20"/><text x="5" y="33">A</text><text x="5" y="63">B</text><text x="205" y="53">Y</text></svg></div>
+            <div><strong>OR Gate</strong><svg width="250" height="120" viewBox="0 0 250 120"><path d="M 50 10 H 90 V 50 H 50 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="100" cy="30" r="5"/><line x1="20" y1="30" x2="50" y2="30"/><path d="M 50 30 C 40 20, 40 10, 50 10"/><line x1="105" y1="30" x2="140" y2="30"/><path d="M 50 60 H 90 V 100 H 50 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="100" cy="80" r="5"/><line x1="20" y1="80" x2="50" y2="80"/><path d="M 50 80 C 40 70, 40 60, 50 60"/><line x1="105" y1="80" x2="140" y2="80"/><path d="M 140 30 H 180 V 80 H 140 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="190" cy="55" r="5"/><line x1="195" y1="55" x2="220" y2="55"/><text x="5" y="33">A</text><text x="5" y="83">B</text><text x="225" y="58">Y</text></svg></div>
         </div>
         
-        <div class="page page-break">
-            <div class="question-title">Answer to Q.10:</div>
-            <div class="sub-heading">De Morgan's Theorem</div>
-            <p><strong>Theorem 1:</strong> The complement of a product is equal to the sum of the complements.</p>
-            <p><strong>Statement:</strong> (A · B)' = A' + B'</p>
-            <div class="sub-heading">Proof using Truth Table:</div>
-            <table>
-                <thead><tr><th>A</th><th>B</th><th>A'</th><th>B'</th><th>A·B</th><th>(A·B)'</th><th>A'+B'</th></tr></thead>
-                <tbody>
-                    <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td><strong>1</strong></td><td><strong>1</strong></td></tr>
-                    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td><strong>1</strong></td><td><strong>1</strong></td></tr>
-                    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td><strong>1</strong></td><td><strong>1</strong></td></tr>
-                    <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
-                </tbody>
-            </table>
-            <p>Since the columns for (A·B)' and A'+B' are identical, the theorem is proven.</p>
+        <div class="page-break-visual"></div>
 
-            <div class="question-title">Answer to Q.11:</div>
-            <div class="sub-heading">Realization of Basic Gates using Universal Gates</div>
-            <p><strong>A. Using NOR Gates Only</strong></p>
-            <div class="diagram-grid">
-                <div><strong>NOT Gate:</strong> Y = (A+A)' = A'
-                    <svg width="150" height="100" viewBox="0 0 150 100">
-                        <path d="M 50 20 C 80 30, 80 70, 50 80 L 90 80 Q 120 50, 90 20 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="115" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/><line x1="20" y1="50" x2="50" y2="50" stroke="black" stroke-width="2"/><line x1="120" y1="50" x2="140" y2="50" stroke="black" stroke-width="2"/><path d="M 50 50 C 40 40, 40 30, 50 20" stroke="black" stroke-width="2" fill="none"/><text x="5" y="53">A</text><text x="145" y="53">Y</text>
-                    </svg>
-                </div>
-                <div><strong>OR Gate:</strong> Y = ((A+B)')'
-                    <svg width="220" height="100" viewBox="0 0 220 100">
-                        <path d="M 30 20 C 60 30, 60 70, 30 80 L 70 80 Q 100 50, 70 20 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="95" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/><line x1="0" y1="35" x2="30" y2="35"/><line x1="0" y1="65" x2="30" y2="65"/><line x1="100" y1="50" x2="120" y2="50"/><path d="M 120 20 C 150 30, 150 70, 120 80 L 160 80 Q 190 50, 160 20 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="185" cy="50" r="5" stroke="black" stroke-width="2" fill="white"/><line x1="190" y1="50" x2="210" y2="50"/><path d="M 120 50 C 110 40, 110 30, 120 20" stroke="black" stroke-width="2" fill="none"/><text x="5" y="33">A</text><text x="5" y="63">B</text><text x="215" y="53">Y</text>
-                    </svg>
-                </div>
-                <div><strong>AND Gate:</strong> Y = (A'+B')'
-                    <svg width="250" height="120" viewBox="0 0 250 120">
-                        <path d="M 50 10 C 80 20, 80 40, 50 50 L 90 50 Q 120 30, 90 10 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="115" cy="30" r="5"/><line x1="20" y1="30" x2="50" y2="30"/><path d="M 50 30 C 40 20, 40 10, 50 10"/><line x1="120" y1="30" x2="140" y2="30"/><path d="M 50 60 C 80 70, 80 90, 50 100 L 90 100 Q 120 80, 90 60 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="115" cy="80" r="5"/><line x1="20" y1="80" x2="50" y2="80"/><path d="M 50 80 C 40 70, 40 60, 50 60"/><line x1="120" y1="80" x2="140" y2="80"/><path d="M 140 30 C 170 40, 170 70, 140 80 L 180 80 Q 210 55, 180 30 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="205" cy="55" r="5"/><line x1="210" y1="55" x2="230" y2="55"/><text x="5" y="33">A</text><text x="5" y="83">B</text><text x="235" y="58">Y</text>
-                    </svg>
-                </div>
-            </div>
-            <p><strong>B. Using NAND Gates Only</strong></p>
-            <div class="diagram-grid">
-                <div><strong>NOT Gate:</strong> Y = (A·A)' = A'
-                    <svg width="150" height="100" viewBox="0 0 150 100">
-                        <path d="M 50 20 H 90 V 80 H 50 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="100" cy="50" r="5"/><line x1="20" y1="50" x2="50" y2="50"/><path d="M 50 50 C 40 40, 40 30, 50 20"/><line x1="105" y1="50" x2="130" y2="50"/><text x="5" y="53">A</text><text x="135" y="53">Y</text>
-                    </svg>
-                </div>
-                <div><strong>AND Gate:</strong> Y = ((A·B)')'
-                    <svg width="220" height="100" viewBox="0 0 220 100">
-                        <path d="M 30 20 H 70 V 80 H 30 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="80" cy="50" r="5"/><line x1="0" y1="35" x2="30" y2="35"/><line x1="0" y1="65" x2="30" y2="65"/><line x1="85" y1="50" x2="120" y2="50"/><path d="M 120 20 H 160 V 80 H 120 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="170" cy="50" r="5"/><line x1="175" y1="50" x2="200" y2="50"/><path d="M 120 50 C 110 40, 110 30, 120 20"/><text x="5" y="33">A</text><text x="5" y="63">B</text><text x="205" y="53">Y</text>
-                    </svg>
-                </div>
-                <div><strong>OR Gate:</strong> Y = (A'·B')'
-                    <svg width="250" height="120" viewBox="0 0 250 120">
-                        <path d="M 50 10 H 90 V 50 H 50 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="100" cy="30" r="5"/><line x1="20" y1="30" x2="50" y2="30"/><path d="M 50 30 C 40 20, 40 10, 50 10"/><line x1="105" y1="30" x2="140" y2="30"/><path d="M 50 60 H 90 V 100 H 50 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="100" cy="80" r="5"/><line x1="20" y1="80" x2="50" y2="80"/><path d="M 50 80 C 40 70, 40 60, 50 60"/><line x1="105" y1="80" x2="140" y2="80"/><path d="M 140 30 H 180 V 80 H 140 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="190" cy="55" r="5"/><line x1="195" y1="55" x2="220" y2="55"/><text x="5" y="33">A</text><text x="5" y="83">B</text><text x="225" y="58">Y</text>
-                    </svg>
-                </div>
-            </div>
+        <div class="question-text">Q.12: Explain with a diagram and truth table the operation of a 2:1 multiplexer. (4 Marks)</div>
+        <div class="answer-title">Answer to Q.12:</div>
+        <p>A 2:1 Multiplexer (MUX) is a digital circuit that selects one of two data input lines (I₀, I₁) and forwards it to a single output line (Y). The selection is controlled by a single select line (S).</p>
+        <div class="sub-heading">Logic Diagram (1 Mark):</div>
+        <div class="diagram-container">
+            <svg width="250" height="150" viewBox="0 0 250 150"><path d="M 100 20 H 140 V 60 H 100 Z" stroke="black" stroke-width="2" fill="none"/><path d="M 100 90 H 140 V 130 H 100 Z" stroke="black" stroke-width="2" fill="none"/><path d="M 180 50 C 200 60, 200 90, 180 100 L 210 100 Q 230 75, 210 50 Z" stroke="black" stroke-width="2" fill="none"/><path d="M 40 100 L 60 110 L 40 120 Z" stroke="black" stroke-width="2" fill="none"/><circle cx="65" cy="115" r="3" stroke="black" stroke-width="2" fill="white"/><line x1="20" y1="40" x2="100" y2="40" stroke="black" stroke-width="2"/><text x="5" y="43">I₀</text><line x1="20" y1="110" x2="100" y2="110" stroke="black" stroke-width="2"/><text x="5" y="113">I₁</text><line x1="30" y1="130" x2="30" y2="115" stroke="black" stroke-width="2"/><line x1="30" y1="115" x2="40" y2="115" stroke="black" stroke-width="2"/><text x="25" y="145">S</text><line x1="68" y1="115" x2="90" y2="115" stroke="black" stroke-width="2"/><line x1="90" y1="115" x2="90" y2="50" stroke="black" stroke-width="2"/><line x1="90" y1="50" x2="100" y2="50" stroke="black" stroke-width="2"/><line x1="30" y1="115" x2="90" y2="115" stroke="black" stroke-width="2"/><line x1="90" y1="115" x2="90" y2="120" stroke="black" stroke-width="2"/><line x1="90" y1="120" x2="100" y2="120" stroke="black" stroke-width="2"/><line x1="140" y1="40" x2="170" y2="40" stroke="black" stroke-width="2"/><line x1="170" y1="40" x2="170" y2="65" stroke="black" stroke-width="2"/><line x1="170" y1="65" x2="180" y2="65" stroke="black" stroke-width="2"/><line x1="140" y1="110" x2="170" y2="110" stroke="black" stroke-width="2"/><line x1="170" y1="110" x2="170" y2="85" stroke="black" stroke-width="2"/><line x1="170" y1="85" x2="180" y2="85" stroke="black" stroke-width="2"/><line x1="225" y1="75" x2="245" y2="75" stroke="black" stroke-width="2"/><text x="248" y="78">Y</text></svg>
         </div>
+        <p><strong>Truth Table (1 Mark):</strong></p>
+        <table><thead><tr><th>Select (S)</th><th>Output (Y)</th></tr></thead><tbody><tr><td>0</td><td>I₀</td></tr><tr><td>1</td><td>I₁</td></tr></tbody></table>
+        <p><strong>Operation (2 Marks):</strong> When the select line S is 0, the NOT gate inverts it to 1, enabling the top AND gate. This allows the data from input I₀ to pass to the OR gate and then to the output Y. When S is 1, the bottom AND gate is enabled, allowing data from input I₁ to pass to the output. Thus, the select line chooses which input is connected to the output.</p>
+
+        <div class="page-break-visual"></div>
+
+        <div class="question-text">Q.13: Perform the BCD addition: (17)₁₀ + (57)₁₀. (4 Marks)</div>
+        <div class="answer-title">Answer to Q.13:</div>
+        <p><strong>Step 1: BCD Representation (1 Mark)</strong><br>17 = 0001 0111<br>57 = 0101 0111</p>
+        <p><strong>Step 2: Binary Addition (1 Mark)</strong></p>
+        <pre>     0001  0111   (17)
++    0101  0111   (57)
+-----------------
+     0110  1110</pre>
+        <p><strong>Step 3: Check and Correct Invalid Group (1 Mark)</strong><br>The right group (1110) is greater than 9, so it's invalid. Add 6 (0110) to correct it.</p>
+        <pre>      1110
++     0110
+    --------
+    1 0100</pre>
+        <p><strong>Step 4: Add Carry and Final Result (1 Mark)</strong><br>Add the carry (1) to the next group: 0110 + 1 = 0111.</p>
+        <p>The final BCD result is <strong>0111 0100</strong>, which is (74)₁₀.</p>
         
-        <div class="page page-break">
-            <div class="question-title">Answer to Q.12:</div>
-            <div class="sub-heading">Operation of a 2:1 Multiplexer</div>
-            <p>A 2:1 Multiplexer (MUX) selects one of two data input lines (I₀, I₁) and directs it to a single output line (Y), controlled by a single selection line (S).</p>
-            <div class="sub-heading">Logic Diagram:</div>
-            <div class="diagram-container">
-                <svg width="250" height="150" viewBox="0 0 250 150">
-                    <!-- AND gates -->
-                    <path d="M 100 20 H 140 V 60 H 100 Z" stroke="black" stroke-width="2" fill="none"/>
-                    <path d="M 100 90 H 140 V 130 H 100 Z" stroke="black" stroke-width="2" fill="none"/>
-                    <!-- OR gate -->
-                    <path d="M 180 50 C 200 60, 200 90, 180 100 L 210 100 Q 230 75, 210 50 Z" stroke="black" stroke-width="2" fill="none"/>
-                    <!-- NOT gate -->
-                    <path d="M 40 100 L 60 110 L 40 120 Z" stroke="black" stroke-width="2" fill="none"/>
-                    <circle cx="65" cy="115" r="3" stroke="black" stroke-width="2" fill="white"/>
-                    <!-- Connections -->
-                    <line x1="20" y1="40" x2="100" y2="40" stroke="black" stroke-width="2"/><text x="5" y="43">I₀</text>
-                    <line x1="20" y1="110" x2="100" y2="110" stroke="black" stroke-width="2"/><text x="5" y="113">I₁</text>
-                    <line x1="30" y1="130" x2="30" y2="115" stroke="black" stroke-width="2"/><line x1="30" y1="115" x2="40" y2="115" stroke="black" stroke-width="2"/><text x="25" y="145">S</text>
-                    <line x1="68" y1="115" x2="90" y2="115" stroke="black" stroke-width="2"/><line x1="90" y1="115" x2="90" y2="50" stroke="black" stroke-width="2"/><line x1="90" y1="50" x2="100" y2="50" stroke="black" stroke-width="2"/>
-                    <line x1="30" y1="115" x2="90" y2="115" stroke="black" stroke-width="2"/><line x1="90" y1="115" x2="90" y2="120" stroke="black" stroke-width="2"/><line x1="90" y1="120" x2="100" y2="120" stroke="black" stroke-width="2"/>
-                    <line x1="140" y1="40" x2="170" y2="40" stroke="black" stroke-width="2"/><line x1="170" y1="40" x2="170" y2="65" stroke="black" stroke-width="2"/><line x1="170" y1="65" x2="180" y2="65" stroke="black" stroke-width="2"/>
-                    <line x1="140" y1="110" x2="170" y2="110" stroke="black" stroke-width="2"/><line x1="170" y1="110" x2="170" y2="85" stroke="black" stroke-width="2"/><line x1="170" y1="85" x2="180" y2="85" stroke="black" stroke-width="2"/>
-                    <line x1="225" y1="75" x2="245" y2="75" stroke="black" stroke-width="2"/><text x="248" y="78">Y</text>
-                </svg>
-            </div>
-            <p><strong>Boolean Expression:</strong> Y = (I₀ · S') + (I₁ · S)</p>
-            <table><thead><tr><th>Select (S)</th><th>Output (Y)</th></tr></thead>
-            <tbody><tr><td>0</td><td>I₀</td></tr><tr><td>1</td><td>I₁</td></tr></tbody></table>
-        </div>
+        <div class="question-text">Q.14: Subtract (1010)₂ - (0101)₂ using 2's complement form. (4 Marks)</div>
+        <div class="answer-title">Answer to Q.14:</div>
+        <p><strong>Step 1: Find 2's Complement of Subtrahend (2 Marks)</strong><br>The subtrahend is 0101.<br>1's complement of 0101 is 1010.<br>2's complement = 1's complement + 1 = 1010 + 1 = 1011.</p>
+        <p><strong>Step 2: Add to Minuend (2 Marks)</strong><br>Add the result to the minuend (1010).</p>
+        <pre>      1010   (Minuend)
++     1011   (2's complement)
+    --------
+    1 0101</pre>
+        <p>Discard the end-around carry. The result is <strong>(0101)₂</strong>.</p>
 
-        <div class="page page-break">
-            <div class="question-title">Answer to Q.13:</div>
-            <div class="sub-heading">BCD Addition of (47)₁₀ + (57)₁₀</div>
-            <p><strong>Step 1:</strong> Represent numbers in BCD.<br>47 = 0100 0111<br>57 = 0101 0111</p>
-            <p><strong>Step 2:</strong> Add using binary addition.</p>
-            <pre>     0100  0111   (47)
-    +    0101  0111   (57)
-    -----------------
-         1001  1110</pre>
-            <p><strong>Step 3:</strong> Check each 4-bit group. The right group (1110) is > 9, so it's invalid.</p>
-            <p><strong>Step 4:</strong> Correct the invalid group by adding 6 (0110).</p>
-            <pre>      1110
-    +     0110
-        --------
-        1 0100</pre>
-            <p><strong>Step 5:</strong> Add the carry (1) to the next group.</p>
-            <pre>      1001
-    +        1
-        --------
-          1010</pre>
-            <p><strong>Step 6:</strong> This result (1010) is also > 9. Correct it by adding 6.</p>
-            <pre>      1010
-    +     0110
-        --------
-        1 0000</pre>
-            <p><strong>Step 7:</strong> Combine the results with the final carry.</p>
-            <p>Final BCD: <strong>0001 0000 0100</strong>, which is (104)₁₀.</p>
-
-            <div class="question-title">Answer to Q.14:</div>
-            <div class="sub-heading">Subtract (1010)₂ - (0101)₂ using 2's Complement</div>
-            <p>Perform A + (2's complement of B).</p>
-            <p><strong>Step 1:</strong> Find 2's complement of B (0101).<br>1's complement: 1010<br>2's complement: 1010 + 1 = 1011</p>
-            <p><strong>Step 2:</strong> Add A to the 2's complement of B.</p>
-            <pre>      1010   (A)
-    +     1011   (2's complement of B)
-        --------
-        1 0101</pre>
-            <p><strong>Step 3:</strong> Discard the end-around carry (1). The result is positive.</p>
-            <p>Result: <strong>(0101)₂</strong>.</p>
-        </div>
+        <div class="page-break-visual"></div>
         
-        <div class="page page-break">
-            <div class="question-title">Answer to Q.15:</div>
-            <div class="sub-heading">Convert (1101011)₂ to Hexadecimal and Octal</div>
-            <p><strong>1. To Hexadecimal:</strong> Group into sets of 4 from the right.</p>
-            <p>Binary: 0110 1011<br>Hex: &nbsp; &nbsp; 6 &nbsp; &nbsp; &nbsp; B</p>
-            <p>Result: <strong>(6B)₁₆</strong></p>
-            <p><strong>2. To Octal:</strong> Group into sets of 3 from the right.</p>
-            <p>Binary: 001 101 011<br>Octal: &nbsp; &nbsp; 1 &nbsp; &nbsp; 5 &nbsp; &nbsp; 3</p>
-            <p>Result: <strong>(153)₈</strong></p>
+        <div class="question-text">Q.15: Convert (1101011)₂ into its equivalent Hexadecimal and Octal number. (4 Marks)</div>
+        <div class="answer-title">Answer to Q.15:</div>
+        <p><strong>To Hexadecimal (2 Marks):</strong> Group binary into sets of 4 from the right. Add leading zeros if needed.<br>Binary: <u>0110</u> <u>1011</u><br>Hex: &nbsp; &nbsp; &nbsp; 6 &nbsp; &nbsp; &nbsp; &nbsp; B<br>Result: <strong>(6B)₁₆</strong></p>
+        <p><strong>To Octal (2 Marks):</strong> Group binary into sets of 3 from the right. Add leading zeros if needed.<br>Binary: <u>001</u> <u>101</u> <u>011</u><br>Octal: &nbsp; &nbsp; 1 &nbsp; &nbsp; 5 &nbsp; &nbsp; 3<br>Result: <strong>(153)₈</strong></p>
 
-            <div class="question-title">Answer to Q.16:</div>
-            <div class="sub-heading">Number System Conversions</div>
-            <p><strong>a. (653)₈ to (?)₁₀</strong><br>
-            (6 × 8²) + (5 × 8¹) + (3 × 8⁰) = (6 × 64) + (5 × 8) + (3 × 1) = 384 + 40 + 3 = <strong>427₁₀</strong></p>
-            <p><strong>b. (204)₁₀ to (?)₈</strong><br>
-            Use repeated division by 8.
-            204 ÷ 8 = 25 R 4<br>
-            25 ÷ 8 = 3 R 1<br>
-            3 ÷ 8 = 0 R 3<br>
-            Read remainders bottom-up: <strong>314₈</strong></p>
-            <p><strong>c. (4CA)₁₆ to (?)₈</strong><br>
-            Hex to Binary: 4=0100, C=1100, A=1010 → 010011001010<br>
-            Binary to Octal (group by 3): 010 011 001 010 → 2 3 1 2<br>
-            Result: <strong>2312₈</strong></p>
-
-            <div class="question-title">Answer to Q.17:</div>
-            <div class="sub-heading">Fundamental Laws of Boolean Algebra (AND Operation)</div>
-            <ol>
-                <li><strong>Annulment Law:</strong> A · 0 = 0</li>
-                <li><strong>Identity Law:</strong> A · 1 = A</li>
-                <li><strong>Idempotent Law:</strong> A · A = A</li>
-                <li><strong>Complement Law:</strong> A · A' = 0</li>
-            </ol>
-
-            <div class="question-title">Answer to Q.18:</div>
-            <div class="sub-heading">2-Input AND Gate</div>
-            <div class="diagram-container">
-                <svg width="150" height="100" viewBox="0 0 150 100">
-                    <path d="M 30 20 H 70 V 80 H 30 Z" stroke="black" stroke-width="2" fill="none"/>
-                    <line x1="0" y1="35" x2="30" y2="35" stroke="black" stroke-width="2"/>
-                    <line x1="0" y1="65" x2="30" y2="65" stroke="black" stroke-width="2"/>
-                    <line x1="70" y1="50" x2="110" y2="50" stroke="black" stroke-width="2"/>
-                    <text x="10" y="33" font-size="12">A</text>
-                    <text x="10" y="63" font-size="12">B</text>
-                    <text x="115" y="53" font-size="12">Y</text>
-                </svg>
-            </div>
-            <p><strong>Boolean Expression:</strong> Y = A · B</p>
-            <table>
-                <thead><tr><th colspan="2">Inputs</th><th>Output</th></tr>
-                <tr><th>A</th><th>B</th><th>Y</th></tr></thead>
-                <tbody>
-                    <tr><td>0</td><td>0</td><td>0</td></tr>
-                    <tr><td>0</td><td>1</td><td>0</td></tr>
-                    <tr><td>1</td><td>0</td><td>0</td></tr>
-                    <tr><td>1</td><td>1</td><td>1</td></tr>
-                </tbody>
-            </table>
+        <div class="question-text">Q.16: Solve: (4 Marks)<br>i) (653)₈ → (?)₁₀<br>ii) (204)₁₀ → (?)₈<br>iii) (4CA)₁₆ → (?)₈</div>
+        <div class="answer-title">Answer to Q.16:</div>
+        <p><strong>i) (653)₈ to (?)₁₀:</strong><br>(6 × 8²) + (5 × 8¹) + (3 × 8⁰) = 384 + 40 + 3 = <strong>427₁₀</strong></p>
+        <p><strong>ii) (204)₁₀ to (?)₈:</strong><br>204 ÷ 8 = 25 R 4; &nbsp; 25 ÷ 8 = 3 R 1; &nbsp; 3 ÷ 8 = 0 R 3 → <strong>314₈</strong></p>
+        <p><strong>iii) (4CA)₁₆ to (?)₈:</strong><br>First to binary: 4=0100, C=1100, A=1010 → 010011001010<br>Then to octal: 010 011 001 010 → <strong>2312₈</strong></p>
+        
+        <div class="question-text">Q.17: State AND laws. (4 Marks)</div>
+        <div class="answer-title">Answer to Q.17:</div>
+        <p>The fundamental laws for the Boolean AND operation are:</p>
+        <ol>
+            <li><strong>Annulment Law (1 Mark):</strong> Any variable ANDed with 0 is 0. (A · 0 = 0)</li>
+            <li><strong>Identity Law (1 Mark):</strong> Any variable ANDed with 1 is the variable itself. (A · 1 = A)</li>
+            <li><strong>Idempotent Law (1 Mark):</strong> Any variable ANDed with itself is the variable itself. (A · A = A)</li>
+            <li><strong>Complement Law (1 Mark):</strong> Any variable ANDed with its complement is 0. (A · A' = 0)</li>
+        </ol>
+        
+        <div class="question-text">Q.18: Draw the symbol, truth table, and Boolean expression of an AND gate. (2 Marks)</div>
+        <div class="answer-title">Answer to Q.18:</div>
+        <div class="diagram-container">
+            <svg width="150" height="100" viewBox="0 0 150 100">
+                <path d="M 30 20 H 70 V 80 H 30 Z" stroke="black" stroke-width="2" fill="none"/><line x1="0" y1="35" x2="30" y2="35" stroke="black" stroke-width="2"/><line x1="0" y1="65" x2="30" y2="65" stroke="black" stroke-width="2"/><line x1="70" y1="50" x2="110" y2="50" stroke="black" stroke-width="2"/><text x="10" y="33" font-size="12">A</text><text x="10" y="63" font-size="12">B</text><text x="115" y="53" font-size="12">Y</text>
+            </svg>
         </div>
+        <p><strong>Boolean Expression:</strong> Y = A · B</p>
+        <table>
+            <thead><tr><th colspan="2">Inputs</th><th>Output</th></tr><tr><th>A</th><th>B</th><th>Y</th></tr></thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <script>
-        const { jsPDF } = window.jspdf;
-
         async function downloadPDF() {
             const pdfBtn = document.getElementById('pdfBtn');
             pdfBtn.innerText = 'Generating...';
             pdfBtn.disabled = true;
 
-            const doc = new jsPDF('p', 'mm', 'a4');
-            const pages = document.querySelectorAll('.page');
-            const a4Width = 210;
-            const a4Height = 297;
-
-            for (let i = 0; i < pages.length; i++) {
-                const page = pages[i];
-                await html2canvas(page, {
-                    scale: 2, // Higher scale for better quality
-                    useCORS: true
-                }).then(canvas => {
-                    const imgData = canvas.toDataURL('image/png');
-                    const imgWidth = a4Width;
-                    const pageHeight = canvas.height * imgWidth / canvas.width;
-                    let heightLeft = pageHeight;
-                    
-                    if (i > 0) {
-                        doc.addPage();
-                    }
-                    doc.addImage(imgData, 'PNG', 0, 0, imgWidth, pageHeight);
+            try {
+                const { jsPDF } = window.jspdf;
+                const contentToPrint = document.getElementById('contentToPrint');
+                
+                const canvas = await html2canvas(contentToPrint, {
+                    scale: 3, // Increased scale for better quality
+                    useCORS: true,
+                    logging: false,
+                    windowWidth: contentToPrint.scrollWidth,
+                    windowHeight: contentToPrint.scrollHeight
                 });
+
+                const imgData = canvas.toDataURL('image/jpeg', 0.92); // High quality JPEG
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+                const canvasAspectRatio = canvasHeight / canvasWidth;
+                
+                const imgHeight = pdfWidth * canvasAspectRatio;
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                // Add the first page
+                pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+                heightLeft -= pdfHeight;
+
+                // Add subsequent pages
+                while (heightLeft > 0) {
+                    position -= pdfHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+                    heightLeft -= pdfHeight;
+                }
+                
+                pdf.save('MSBTE_Model_Answer_Sheet.pdf');
+
+            } catch (error) {
+                console.error("Failed to generate PDF:", error);
+                alert("Sorry, there was an error generating the PDF. Please try again.");
+            } finally {
+                pdfBtn.innerText = 'Download as PDF';
+                pdfBtn.disabled = false;
             }
-            
-            doc.save('MSBTE_Model_Answer_Sheet.pdf');
-            pdfBtn.innerText = 'Download as PDF';
-            pdfBtn.disabled = false;
         }
 
         function downloadDoc() {
-            const content = document.getElementById('pageContainer').innerHTML;
+            let content = document.getElementById('contentToPrint').innerHTML;
+            // For Word, replace the visual breaks with actual page breaks.
+            content = content.replace(/<div class="page-break-visual"><\/div>/g, '<div style="page-break-after:always;"></div>');
+
             const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
                 "xmlns:w='urn:schemas-microsoft-com:office:word' " +
                 "xmlns='http://www.w3.org/TR/REC-html40'>" +
-                "<head><meta charset='utf-8'><title>MSBTE Model Answer Sheet</title>" +
-                "<style>" +
-                "body { font-family: 'Times New Roman', serif; font-size: 12pt; }" +
-                "table { border-collapse: collapse; } " +
-                "th, td { border: 1px solid black; padding: 5px; } " +
-                "pre { background-color: #f0f0f0; padding: 10px; font-family: 'Courier New', monospace; } " +
-                ".page { page-break-after: always; } " + /* Use page-break-after for Word */
-                "</style>" +
-                "</head><body>";
+                "<head><meta charset='utf-8'><title>MSBTE Model Answer Sheet</title></head><body>";
             const footer = "</body></html>";
-            const sourceHTML = header + content.replace(/class="page page-break"/g, 'class="page"') + footer;
+            const sourceHTML = header + content + footer;
 
             const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
             const fileDownload = document.createElement("a");
